@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Anti-AI Qwen Academy | Литература ЕГЭ-2027</title>
+<meta name="description" content="Бесплатный офлайн-тренажёр ЕГЭ-2027 по литературе: 11 заданий, 48 первичных баллов, 235 минут, демо ФИПИ." />
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<style>
+  * { box-sizing: border-box; }
+  :root {
+    --bg: #070b18;
+    --card: rgba(18, 26, 51, 0.72);
+    --card-soft: rgba(255, 255, 255, 0.05);
+    --border: rgba(255, 255, 255, 0.1);
+    --text: #e8ecff;
+    --muted: #9aa4c8;
+    --accent: #22d3ee;
+    --violet: #7c3aed;
+    --green: #22c55e;
+    --red: #ef4444;
+    --orange: #f59e0b;
+  }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background:
+      radial-gradient(circle at top left, rgba(124, 58, 237, 0.22), transparent 30%),
+      radial-gradient(circle at top right, rgba(34, 211, 238, 0.18), transparent 28%),
+      var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+    min-height: 100vh;
+  }
+  .container { width: min(1120px, 92%); margin: 0 auto; }
+  header {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(14px);
+    background: rgba(7, 11, 24, 0.82);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; padding: 14px 0; flex-wrap: wrap;
+  }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand-logo {
+    width: 46px; height: 46px; border-radius: 15px; object-fit: cover;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow: 0 12px 30px rgba(34, 211, 238, 0.18);
+    flex: 0 0 auto;
+  }
+  .brand strong { display: block; font-size: 16px; line-height: 1.2; }
+  .brand small { color: var(--muted); font-size: 12px; }
+  nav { display: flex; gap: 18px; flex-wrap: wrap; }
+  nav a { color: #cfd6ff; text-decoration: none; font-weight: 700; font-size: 14px; }
+  nav a:hover { color: white; }
+  .top-controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-left: auto; }
+
+  .lang-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--muted); border-radius: 999px; padding: 8px 12px;
+    font-weight: 850; cursor: pointer; transition: 0.15s ease;
+    font-size: 13px;
+  }
+  .lang-btn:hover { background: rgba(255, 255, 255, 0.12); }
+  .lang-option { opacity: 0.65; }
+  .lang-option.active { opacity: 1; color: white; }
+  .lang-sep { opacity: 0.45; }
+
+  .timer-widget {
+    display: flex; align-items: center; gap: 6px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px; padding: 6px 8px;
+  }
+  .timer-widget select {
+    background: rgba(7, 11, 24, 0.55); color: var(--text);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 10px; padding: 6px 8px; font: inherit;
+    font-size: 12px; max-width: 190px;
+  }
+  #timerDisplay {
+    font-variant-numeric: tabular-nums; font-weight: 900;
+    min-width: 88px; text-align: center; color: white;
+  }
+  .timer-btn {
+    border: 0; background: rgba(255, 255, 255, 0.08); color: var(--text);
+    border-radius: 10px; padding: 6px 9px; cursor: pointer;
+    font-size: 14px; transition: 0.15s ease;
+  }
+  .timer-btn:hover { background: rgba(255, 255, 255, 0.14); }
+  .timer-widget.warning #timerDisplay { color: var(--orange); }
+  .timer-widget.danger #timerDisplay { color: var(--red); animation: pulse 1s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.55; } }
+
+  .hero {
+    display: grid; grid-template-columns: 1.15fr 0.85fr;
+    gap: 24px; padding: 48px 0 28px; align-items: start;
+  }
+  .badge {
+    display: inline-flex; align-items: center;
+    padding: 8px 12px; border-radius: 999px;
+    background: rgba(124, 58, 237, 0.18);
+    border: 1px solid rgba(124, 58, 237, 0.35);
+    color: #d8ccff; font-size: 13px; font-weight: 700;
+  }
+  h1 { font-size: clamp(34px, 5vw, 58px); line-height: 1.05; margin: 16px 0; }
+  h1 .accent { color: var(--accent); }
+  .lead { color: #b8c1e6; max-width: 72ch; font-size: 17px; }
+  .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
+  .btn {
+    border: 0; border-radius: 14px; padding: 14px 18px;
+    font-weight: 850; cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    background: linear-gradient(135deg, var(--violet), var(--accent));
+    color: white; box-shadow: 0 12px 30px rgba(34, 211, 238, 0.18);
+    font-size: 15px;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn.secondary {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: #eaf0ff; box-shadow: none;
+  }
+  .btn.small { padding: 10px 14px; font-size: 14px; border-radius: 12px; }
+  .panel {
+    background: linear-gradient(180deg, rgba(124, 58, 237, 0.16), rgba(6, 182, 212, 0.10));
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px; padding: 22px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  }
+  .panel h3 { margin: 0 0 14px; font-size: 20px; }
+  .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 18px 0; }
+  .metric {
+    background: rgba(7, 11, 24, 0.35); border-radius: 16px;
+    padding: 14px; border: 1px solid rgba(255, 255, 255, 0.08);
+    min-height: 82px;
+  }
+  .metric strong { display: block; font-size: 22px; color: white; margin-bottom: 4px; }
+  .metric span { color: var(--muted); font-size: 12px; }
+  progress {
+    width: 100%; height: 10px; border-radius: 999px;
+    overflow: hidden; appearance: none;
+    background: rgba(255, 255, 255, 0.1); border: none; margin-top: 10px;
+  }
+  progress::-webkit-progress-bar { background: rgba(255, 255, 255, 0.1); border-radius: 999px; }
+  progress::-webkit-progress-value { background: linear-gradient(90deg, var(--violet), var(--accent)); border-radius: 999px; }
+  progress::-moz-progress-bar { background: var(--accent); border-radius: 999px; }
+  .note { color: var(--muted); font-size: 13px; margin-top: 12px; }
+
+  section { padding: 28px 0; }
+  .section-head {
+    display: flex; justify-content: space-between;
+    align-items: end; gap: 16px; margin-bottom: 18px; flex-wrap: wrap;
+  }
+  h2 { font-size: clamp(26px, 3vw, 36px); margin: 0; line-height: 1.15; }
+  .sub { color: var(--muted); margin: 6px 0 0; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(245px, 1fr)); gap: 16px; }
+  .card {
+    background: var(--card); border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 22px; padding: 20px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+  }
+  .card h3 { margin: 0 0 10px; font-size: 20px; }
+  .card p { color: #b8c1e6; margin: 0 0 16px; }
+  .warn-card { border-color: rgba(245, 158, 11, 0.35); background: linear-gradient(180deg, rgba(245, 158, 11, 0.10), rgba(18, 26, 51, 0.72)); }
+  .danger-card { border-color: rgba(239, 68, 68, 0.35); background: linear-gradient(180deg, rgba(239, 68, 68, 0.10), rgba(18, 26, 51, 0.72)); }
+  .success-card { border-color: rgba(34, 197, 94, 0.35); background: linear-gradient(180deg, rgba(34, 197, 94, 0.10), rgba(18, 26, 51, 0.72)); }
+  .tag {
+    display: inline-block; padding: 6px 10px; border-radius: 999px;
+    font-size: 12px; font-weight: 850; margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #dbe3ff;
+  }
+  .tag.red { background: rgba(239, 68, 68, 0.14); border-color: rgba(239, 68, 68, 0.35); color: #ffd7d7; }
+  .tag.green { background: rgba(34, 197, 94, 0.14); border-color: rgba(34, 197, 94, 0.35); color: #d7ffe6; }
+  .tag.orange { background: rgba(245, 158, 11, 0.14); border-color: rgba(245, 158, 11, 0.35); color: #fff0cc; }
+  .mini-list { margin: 0; padding-left: 18px; color: #c8d2f5; }
+  .mini-list li { margin: 7px 0; }
+
+  .question-block {
+    background: var(--card); border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 24px; padding: 24px; margin-bottom: 26px;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+  }
+  .q-number {
+    display: inline-block; padding: 6px 12px; border-radius: 999px;
+    background: rgba(124, 58, 237, 0.22);
+    border: 1px solid rgba(124, 58, 237, 0.45);
+    color: #d8ccff; font-size: 13px; font-weight: 850; margin-bottom: 14px;
+  }
+  .q-part { margin-bottom: 18px; }
+  .q-part-label {
+    display: inline-block; font-size: 12px; font-weight: 900;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    color: var(--accent); margin-bottom: 8px;
+  }
+  .q-text {
+    font-size: 17px; font-weight: 700; margin: 0;
+    line-height: 1.5; color: #eaf0ff; white-space: pre-wrap;
+  }
+  .q-info {
+    background: rgba(124, 58, 237, 0.10);
+    border-left: 4px solid var(--violet);
+    border-radius: 0 14px 14px 0;
+    padding: 16px 18px; margin: 18px 0;
+    color: #dbe3ff; font-size: 15px; line-height: 1.55; white-space: pre-wrap;
+  }
+  .q-info strong { color: #ffffff; }
+  .q-trainer-label {
+    display: inline-block; font-size: 12px; font-weight: 900;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    color: var(--accent); margin-bottom: 10px;
+  }
+  .answer-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .answer-input {
+    flex: 1; min-width: 220px;
+    background: rgba(7, 11, 24, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: var(--text); border-radius: 14px;
+    padding: 14px 16px; font: inherit; font-size: 16px;
+  }
+  .answer-input:focus {
+    outline: none; border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.15);
+  }
+  .answer-input.correct { border-color: rgba(34, 197, 94, 0.65); background: rgba(34, 197, 94, 0.12); }
+  .answer-input.wrong { border-color: rgba(239, 68, 68, 0.65); background: rgba(239, 68, 68, 0.12); }
+  .answer-input.partial { border-color: rgba(245, 158, 11, 0.65); background: rgba(245, 158, 11, 0.12); }
+  textarea.answer-input { min-height: 100px; resize: vertical; font-family: inherit; line-height: 1.5; }
+  textarea.answer-input.essay { min-height: 220px; }
+
+  /* Блок с фрагментом текста (Тургенев, Северянин) */
+  .passage {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin: 16px 0;
+    font-size: 14px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    color: #dbe3ff;
+    max-height: 380px;
+    overflow-y: auto;
+    font-family: Georgia, 'Times New Roman', serif;
+  }
+  .passage::-webkit-scrollbar { width: 8px; }
+  .passage::-webkit-scrollbar-thumb { background: rgba(124, 58, 237, 0.45); border-radius: 999px; }
+  .passage .passage-label {
+    display: block; font-family: system-ui, sans-serif;
+    font-size: 11px; font-weight: 900; letter-spacing: 0.5px;
+    text-transform: uppercase; color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  /* Плашки для множественного выбора / списка средств */
+  .device-list {
+    display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0;
+  }
+  .device-chip {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px; padding: 6px 12px;
+    font-size: 13px; color: #dbe3ff;
+  }
+  .device-chip b { color: var(--accent); margin-right: 6px; }
+
+  /* Сетка для соответствия */
+  .match-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px; padding: 16px; margin: 14px 0;
+    font-size: 14px;
+  }
+  .match-grid h4 {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;
+    color: var(--accent); margin: 0 0 8px;
+  }
+  .match-grid ul { list-style: none; padding: 0; margin: 0; }
+  .match-grid li { margin: 6px 0; }
+  .match-grid li b { color: var(--violet); }
+  @media (max-width: 640px) { .match-grid { grid-template-columns: 1fr; } }
+
+  /* Список тем сочинения */
+  .topic-list {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px; padding: 12px 18px; margin: 14px 0;
+  }
+  .topic-item {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    font-size: 14px; line-height: 1.5;
+  }
+  .topic-item:last-child { border-bottom: 0; }
+  .topic-item b { color: var(--accent); margin-right: 8px; }
+
+  .result-block { margin-top: 14px; padding: 14px 16px; border-radius: 14px; }
+  .result-block.correct { background: rgba(34, 197, 94, 0.12); border: 1px solid rgba(34, 197, 94, 0.35); }
+  .result-block.wrong { background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.35); }
+  .result-block.partial { background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.35); }
+  .result-block.neutral { background: rgba(34, 211, 238, 0.12); border: 1px solid rgba(34, 211, 238, 0.35); }
+  .verdict { font-size: 17px; font-weight: 900; margin-bottom: 8px; }
+  .verdict.correct { color: #22c55e; }
+  .verdict.wrong { color: #ef4444; }
+  .verdict.partial { color: var(--orange); }
+  .verdict.neutral { color: var(--accent); }
+  .result-row { margin: 6px 0; color: #d7e6ff; font-size: 15px; white-space: pre-wrap; }
+  .result-row strong { color: #ffffff; }
+  .source-row {
+    margin-top: 10px; padding-top: 10px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.18);
+    color: var(--muted); font-size: 13px;
+    white-space: pre-wrap;
+  }
+  .source-row strong { color: #dbe3ff; }
+  .summary {
+    background: linear-gradient(180deg, rgba(34, 197, 94, 0.14), rgba(18, 26, 51, 0.72));
+    border: 1px solid rgba(34, 197, 94, 0.4);
+    border-radius: 24px; padding: 24px; text-align: center; margin-top: 24px;
+  }
+  .summary .score { font-size: 48px; font-weight: 950; color: #fff; }
+  .reset-bar { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; justify-content: flex-end; }
+
+  .checklist { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+  .check-item {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: var(--card-soft); border: 1px solid var(--border);
+    border-radius: 16px; padding: 14px; transition: 0.15s ease;
+  }
+  .check-item input { width: 20px; height: 20px; margin-top: 3px; accent-color: var(--accent); flex: 0 0 auto; }
+  .check-item label { cursor: pointer; color: #dbe3ff; }
+  .check-item.done { opacity: 0.72; background: rgba(34, 211, 238, 0.08); border-color: rgba(34, 211, 238, 0.25); }
+  .check-item.done label { text-decoration: line-through; color: #aab5dc; }
+
+  .plan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+  .day {
+    background: var(--card-soft); border: 1px solid var(--border);
+    border-radius: 18px; padding: 16px; min-height: 112px;
+  }
+  .day b { display: block; color: var(--accent); margin-bottom: 6px; font-size: 14px; letter-spacing: 0.2px; }
+  .day.critical { border-color: rgba(239, 68, 68, 0.35); background: rgba(239, 68, 68, 0.08); }
+
+  .support-card {
+    background: linear-gradient(180deg, rgba(124, 58, 237, 0.18), rgba(34, 211, 238, 0.10));
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 24px; padding: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  }
+  .support-card h2 { margin-bottom: 10px; }
+  .support-card p { margin: 10px 0; color: #dbe3ff; }
+  .phone { color: white; font-weight: 900; text-decoration: none; border-bottom: 1px dashed rgba(255, 255, 255, 0.45); }
+  .phone:hover { color: var(--accent); }
+  .copy-status { margin-left: 8px; color: var(--green); font-weight: 850; }
+  .support-card a { color: var(--accent); font-weight: 800; text-decoration: none; }
+  .support-card a:hover { text-decoration: underline; }
+
+  footer {
+    padding: 30px 0 50px; color: var(--muted);
+    text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin-top: 30px;
+  }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; }
+    .metrics { grid-template-columns: 1fr; }
+    nav { gap: 12px; }
+    .top-controls { width: 100%; justify-content: space-between; }
+    .timer-widget select { max-width: 150px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="container topbar">
+    <div class="brand">
+      <img src="favicon.ico" class="brand-logo" alt="Anti-AI Qwen Academy Logo" onerror="this.style.display='none'" />
+      <div>
+        <strong data-i18n="brandTitle">Анти-ИИ Квен Академия</strong>
+        <small data-i18n="brandSub">Литература ЕГЭ-2027 · 11 заданий · 48 баллов</small>
+      </div>
+    </div>
+
+    <nav>
+      <a href="#structure" data-i18n="navStructure">Структура</a>
+      <a href="#changes" data-i18n="navChanges">Изменения 2027</a>
+      <a href="#criteria" data-i18n="navCriteria">Оценивание</a>
+      <a href="#trainer" data-i18n="navTrainer">Тренажёр</a>
+      <a href="#checklist" data-i18n="navChecklist">Чек-лист</a>
+      <a href="#plan" data-i18n="navPlan">25 дней</a>
+      <a href="#support" data-i18n="navSupport">Поддержать</a>
+    </nav>
+
+    <div class="top-controls">
+      <button id="langToggle" class="lang-btn" type="button" aria-label="Switch Language">
+        <span class="lang-option active" data-lang="ru">RU</span>
+        <span class="lang-sep">/</span>
+        <span class="lang-option" data-lang="en">EN</span>
+      </button>
+
+      <div class="timer-widget" id="timerWidget" role="group" aria-label="Exam Timer">
+        <select id="timerPreset" aria-label="Timer Preset"></select>
+        <span id="timerDisplay">03:55:00</span>
+        <button id="timerToggle" class="timer-btn" type="button">▶</button>
+        <button id="timerReset" class="timer-btn" type="button">↺</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div>
+      <span class="badge" data-i18n="badge">Проект ФИПИ 2027 · 11 заданий · 48 первичных баллов · 235 минут</span>
+      <h1 data-i18n="h1">Поможем сдать <span class="accent">литературу</span> правильно</h1>
+      <p class="lead" data-i18n="lead"></p>
+
+      <div class="actions">
+        <button class="btn" onclick="scrollToId('trainer')" data-i18n="actionTrainer">Пройти тренажёр</button>
+        <button class="btn secondary" onclick="scrollToId('structure')" data-i18n="actionStructure">Структура экзамена</button>
+        <button class="btn secondary" onclick="scrollToId('criteria')" data-i18n="actionCriteria">Критерии сочинения</button>
+      </div>
+    </div>
+
+    <aside class="panel">
+      <h3 data-i18n="quickStats">Быстрая статистика</h3>
+
+      <div class="metrics">
+        <div class="metric">
+          <strong id="answeredCount">0/11</strong>
+          <span data-i18n="metricBlocks">блоков пройдено</span>
+        </div>
+        <div class="metric">
+          <strong id="correctCount">0/11</strong>
+          <span data-i18n="metricCorrect">верных ответов</span>
+        </div>
+        <div class="metric">
+          <strong id="checklistProgress">0%</strong>
+          <span data-i18n="metricChecklist">чек-лист</span>
+        </div>
+      </div>
+
+      <progress id="overall" value="0" max="100"></progress>
+      <p class="note" data-i18n="noteReset"></p>
+    </aside>
+  </section>
+
+  <section id="structure">
+    <div class="section-head">
+      <div>
+        <h2 data-i18n="structureTitle">Структура ЕГЭ по литературе</h2>
+        <p class="sub" data-i18n="structureSub"></p>
+      </div>
+    </div>
+    <div class="grid" id="structureGrid"></div>
+  </section>
+
+  <section id="changes">
+    <div class="section-head">
+      <div>
+        <h2 data-i18n="changesTitle">Что изменилось в ЕГЭ-2027</h2>
+        <p class="sub" data-i18n="changesSub"></p>
+      </div>
+    </div>
+    <div class="grid" id="changesGrid"></div>
+  </section>
+
+  <section id="criteria">
+    <div class="section-head">
+      <div>
+        <h2 data-i18n="criteriaTitle">Система оценивания</h2>
+        <p class="sub" data-i18n="criteriaSub"></p>
+      </div>
+    </div>
+    <div class="grid" id="criteriaGrid"></div>
+  </section>
+
+  <section id="trainer">
+    <div class="section-head">
+      <div>
+        <h2 data-i18n="trainerTitle">Тренажёр: 11 заданий ЕГЭ-2027</h2>
+        <p class="sub" data-i18n="trainerSub"></p>
+      </div>
+    </div>
+
+    <p class="note" data-i18n="trainerNote"></p>
+
+    <div class="reset-bar">
+      <button class="btn secondary small" onclick="resetAll()" data-i18n="resetAll">Сбросить все ответы</button>
+    </div>
+
+    <div id="quizContainer"></div>
+    <div id="summaryBox"></div>
+  </section>
+
+  <section id="checklist">
+    <div class="section-head">
+      <div>
+        <h2 data-i18n="checklistTitle">Чек-лист подготовки к ЕГЭ-2027</h2>
+        <p class="sub" data-i18n="checklistSub"></p>
+      </div>
+    </div>
+    <ul class="checklist" id="checklistUl"></ul>
+  </section>
+
+  <section id="plan">
+    <div class="section-head">
+      <div>
+        <h2 data-i18n="planTitle">Полный курс 25 дней</h2>
+        <p class="sub" data-i18n="planSub"></p>
+      </div>
+    </div>
+    <div class="plan-grid" id="planGrid"></div>
+  </section>
+
+  <section id="support">
+    <div class="support-card">
+      <h2 data-i18n="supportTitle">🤝 ПОДДЕРЖАТЬ ПРОЕКТ 💙</h2>
+      <p data-i18n="supportP1"></p>
+      <p data-i18n="supportP2"></p>
+      <p>
+        <span data-i18n="supportPhoneLabel"></span>
+        <a class="phone" href="tel:89202275676">8-920-227-56-76</a>
+        <button class="btn small" onclick="copyPhone()" data-i18n="copyPhone">📋 Копировать номер</button>
+        <span id="copyStatus" class="copy-status" aria-live="polite"></span>
+      </p>
+      <p data-i18n="supportP3"></p>
+      <p data-i18n="supportP4"></p>
+      <p>🌟 👉 <a href="https://ancf-hue.github.io/" target="_blank" rel="noopener noreferrer" data-i18n="supportCatalog"></a>.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container" data-i18n="footer"></div>
+</footer>
+
+<script>
+const TOTAL_TASKS = 11;
+const TOTAL_MAX_PRIMARY = 48;
+
+// Веса заданий по Спецификации ЕГЭ-2027 по литературе
+const WEIGHTS = {
+  1: 1, 2: 1, 3: 1, 4: 4, 5: 7, 6: 1, 7: 1, 8: 1, 9: 4, 10: 7, 11: 20
+};
+
+// Типы оценивания:
+//   word  — точное слово/словосочетание
+//   strict — строгий порядок цифр (задания 2, 8-строгий)
+//   set    — порядок не важен (задание 8)
+//   part2  — развёрнутый ответ
+//   essay  — сочинение
+const SCORING_TYPES = {
+  1: "word", 2: "strict", 3: "word", 4: "part2", 5: "part2",
+  6: "word", 7: "word", 8: "set",   9: "part2", 10: "part2", 11: "essay"
+};
+
+/* ============ Тексты из демоверсии ФИПИ 2027 ============ */
+const TURGENEV_PASSAGE = "Прошло около двух недель. Жизнь в Марьине текла своим порядком: Аркадий сибаритствовал, Базаров работал. Все в доме привыкли к нему, к его небрежным манерам, к его немногосложным и отрывочным речам. Фенечка, в особенности, до того с ним освоилась, что однажды ночью велела разбудить его: с Митей сделались судороги; и он пришёл, и, по обыкновению, полушутя, полузевая, просидел у ней часа два, и помог ребёнку. Зато Павел Петрович всеми силами души своей возненавидел Базарова: он считал его гордецом, нахалом, циником, плебеем; он подозревал, что Базаров не уважает его, что он едва ли не презирает его – его, Павла Кирсанова!\n\nНиколай Петрович побаивался молодого «нигилиста» и сомневался в пользе его влияния на Аркадия; но он охотно его слушал, охотно присутствовал при его физических и химических опытах. Базаров привёз с собой микроскоп и по целым часам с ним возился. Слуги также привязались к нему, хотя он над ними подтрунивал: они чувствовали, что он всё-таки свой брат, не барин. Дуняша охотно с ним хихикала и искоса, значительно посматривала на него, пробегая мимо «перепёлочкой»; Пётр, человек до крайности самолюбивый и глупый, вечно с напряжёнными морщинами на лбу, человек, которого всё достоинство состояло в том, что он глядел учтиво, читал по складам и часто чистил щёточкой свой сюртучок, – и тот ухмылялся и светлел, как только Базаров обращал на него внимание; дворовые мальчишки бегали за «дохтуром», как собачонки. Один старик Прокофьич не любил его, с угрюмым видом подавал ему за столом кушанья, называл его «живодёром» и «прощелыгой» и уверял, что он с своими бакенбардами – настоящая свинья в кусте. Прокофьич, по-своему, был аристократ не хуже Павла Петровича.\n\nНаступили лучшие дни в году – первые дни июня. Погода стояла прекрасная; правда, издали грозилась опять холера, но жители губернии успели уже привыкнуть к её посещениям. Базаров вставал очень рано и отправлялся версты за две, за три, не гулять – он прогулок без дела терпеть не мог, – а собирать травы, насекомых. Иногда он брал с собой Аркадия.\n\nНа возвратном пути у них обыкновенно завязывался спор, и Аркадий обыкновенно оставался побеждённым, хотя говорил больше своего товарища.\n\nОднажды они как-то долго замешкались; Николай Петрович вышел к ним навстречу в сад и, поравнявшись с беседкой, вдруг услышал быстрые шаги и голоса обоих молодых людей. Они шли по ту сторону беседки и не могли его видеть.\n\n– Ты отца недостаточно знаешь, – говорил Аркадий.\n\nНиколай Петрович притаился.\n\n– Твой отец добрый малый, – промолвил Базаров, – но он человек отставной, его песенка спета.\n\nНиколай Петрович приник ухом… Аркадий ничего не отвечал.\n\n«Отставной человек» постоял минуты две неподвижно и медленно поплёлся домой.\n\n(И.С. Тургенев, «Отцы и дети»)";
+
+const SEVERYANIN_POEM = "НЕ УСТЫДИСЬ...\n\nНе устыдись, склонив свои колени,\nБлагодарить в восторге небеса,\nЧто зришь ещё один расцвет сирени\nИ слышишь птиц весенних голоса.\n\nЗемля цветёт, вчера ещё нагая,\nЦветёт душа, её цветам внемля.\nНисходит в сердце радость всеблагая.\nЦенней бессмертья – смертная земля!\n\nОдин лишь раз живя на этом свете\nИ ощущая землю только раз,\nЗабудь о судьбах будущих столетий:\nВся жизнь твоя – в лучах раскрытых глаз!\n\n(Игорь Северянин, 1926)";
+
+const I18N = {
+  ru: {
+    docTitle: "Anti-AI Qwen Academy | Литература ЕГЭ-2027",
+    metaDesc: "Бесплатный офлайн-тренажёр и чек-лист для подготовки к ЕГЭ по литературе 2027: 11 заданий, 48 первичных баллов, 235 минут, демо ФИПИ.",
+    brandTitle: "Анти-ИИ Квен Академия",
+    brandSub: "Литература ЕГЭ-2027 · 11 заданий · 48 баллов",
+    navStructure: "Структура",
+    navChanges: "Изменения 2027",
+    navCriteria: "Оценивание",
+    navTrainer: "Тренажёр",
+    navChecklist: "Чек-лист",
+    navPlan: "25 дней",
+    navSupport: "Поддержать",
+    badge: "Проект ФИПИ 2027 · 11 заданий · 48 первичных баллов · 235 минут",
+    h1: 'Поможем сдать <span class="accent">литературу</span> правильно',
+    lead: "Тренажёр составлен по проекту демоверсии, спецификации и кодификатора ЕГЭ-2027 по литературе. Работа содержит 11 заданий: 6 с кратким ответом, 4 с развёрнутым ответом ограниченного объёма (часть 1) и 1 сочинение (часть 2). Максимум — 48 первичных баллов, время — 235 минут (3 часа 55 минут). Разрешено пользоваться орфографическим словарём.",
+    actionTrainer: "Пройти тренажёр",
+    actionStructure: "Структура экзамена",
+    actionCriteria: "Критерии сочинения",
+    quickStats: "Быстрая статистика",
+    metricBlocks: "блоков пройдено",
+    metricCorrect: "верных ответов",
+    metricChecklist: "чек-лист",
+    noteReset: "Ответы и чек-лист сбрасываются при открытии страницы.",
+    structureTitle: "Структура ЕГЭ по литературе",
+    structureSub: "11 заданий: 6 с кратким ответом, 4 с развёрнутым ответом ограниченного объёма, 1 сочинение. 48 первичных баллов, 235 минут.",
+    changesTitle: "Что изменилось в ЕГЭ-2027",
+    changesSub: "Изменения структуры и содержания КИМ по сравнению с 2026 годом отсутствуют.",
+    criteriaTitle: "Система оценивания",
+    criteriaSub: "Задания 1–3, 6–8 — 1 балл. Задания 4.1/4.2 и 9.1/9.2 — 4 балла. Задания 5 и 10 — 7 баллов. Задание 11 (сочинение) — до 20 баллов.",
+    trainerTitle: "Тренажёр: 11 заданий ЕГЭ-2027",
+    trainerSub: "Часть 1 — краткий ответ и развёрнутый ответ ограниченного объёма. Часть 2 — сочинение (автопроверка приближённая: сверяй с критериями ФИПИ).",
+    trainerNote: "Основано на демонстрационном варианте ФИПИ ЕГЭ-2027. Для заданий 1–3 и 6–8 ответ — слово или последовательность цифр без пробелов. Для заданий 4, 5, 9, 10 и 11 автоматическая проверка является учебной подсказкой и не заменяет экспертную проверку по критериям ФИПИ.",
+    resetAll: "Сбросить все ответы",
+    checklistTitle: "Чек-лист подготовки к ЕГЭ-2027",
+    checklistSub: "Отмечай выполненные пункты — при новом открытии страницы чек-лист сбросится.",
+    planTitle: "Полный курс 25 дней",
+    planSub: "Маршрут подготовки по структуре ЕГЭ-2027.",
+    supportTitle: "🤝 ПОДДЕРЖАТЬ ПРОЕКТ 💙",
+    supportP1: "<strong>Приложение бесплатное. Было и останется.</strong>",
+    supportP2: "Все приложения бесплатны и без рекламы. Ваша помощь помогает развитию офлайн-безопасности и образования.",
+    supportPhoneLabel: "📱 ПЕРЕВОД ПО НОМЕРУ ТЕЛЕФОНА:",
+    copyPhone: "📋 Копировать номер",
+    copied: "✓ Скопировано",
+    supportP3: "✅ Деньги придут мгновенно. Без комиссии. Безопасно.",
+    supportP4: "❤️ Спасибо за поддержку!",
+    supportCatalog: "Каталог бесплатных офлайн-приложений ANTI-AI SHIELD",
+    footer: "Анти-ИИ Квен Академия • Бесплатный HTML-проект • Литература ЕГЭ-2027 • Проект ФИПИ",
+    qLabel1: "1. Вопрос",
+    qLabel2: "2. Что проверяет задание и как думать",
+    qLabel3: "Тренажёр — введи ответ",
+    checkBtn: "Проверить",
+    enterAnswer: "Введите ответ.",
+    correct: "✅ Правильно!",
+    partial: "⚠️ Частично верно",
+    wrong: "❌ Неправильно.",
+    yourAnswer: "Твой ответ:",
+    correctAnswer: "Ориентир:",
+    pointsLabel: "Баллов:",
+    explanationLabel: "Пояснение:",
+    sourceLabel: "Источник:",
+    part2Approx: "Автопроверка развёрнутых заданий приближённая. Итоговый балл сверяйте с критериями ФИПИ.",
+    passedBlocks: "Пройдено блоков:",
+    of: "из",
+    correctInPart1: "Верных ответов:",
+    primaryPart1: "Первичных баллов:",
+    totalPrimary: "Итого первичных баллов:",
+    answerAllBlocks: "Ответь на все блоки, чтобы увидеть итог.",
+    noteSelfCheck: "Для заданий 4, 5, 9, 10, 11 сверь ответ с критериями ФИПИ.",
+    verdictExcellent: "Отличный результат! Можно выходить на высокий балл.",
+    verdictGood: "Хорошо, но разбери ошибки и повтори темы.",
+    verdictNeed: "Нужно плотно проработать базу: тексты, терминология, анализ, сочинение.",
+    confirmReset: "Сбросить все ответы и чек-лист?",
+    copyError: "Не удалось скопировать автоматически. Номер: ",
+    timerExam: "Литература ЕГЭ — 235 мин",
+    timerPractice: "Тренировка — 60 мин",
+    timerSprint: "Спринт — 30 мин",
+    timeUp: "Время вышло!",
+    passageLabel: "Прочитайте текст",
+    taskShort: "Часть 1 · краткий ответ",
+    taskExtended: "Часть 1 · развёрнутый ответ",
+    taskEssay: "Часть 2 · сочинение",
+    deviceListTitle: "Список средств",
+    matchTitleLeft: "Персонажи",
+    matchTitleRight: "Высказывания",
+    topicsTitle: "Темы сочинений (выберите ОДНУ)",
+    chooseOne: "Выберите одно из заданий",
+    wordsCounter: "Слов:"
+  },
+  en: {
+    docTitle: "Anti-AI Qwen Academy | Literature EGE-2027",
+    metaDesc: "Free offline trainer and checklist for Literature EGE-2027: 11 tasks, 48 primary points, 235 minutes, FIPI demo.",
+    brandTitle: "Anti-AI Qwen Academy",
+    brandSub: "Literature EGE-2027 · 11 tasks · 48 points",
+    navStructure: "Structure",
+    navChanges: "Changes 2027",
+    navCriteria: "Scoring",
+    navTrainer: "Trainer",
+    navChecklist: "Checklist",
+    navPlan: "25 Days",
+    navSupport: "Support",
+    badge: "FIPI Demo 2027 · 11 tasks · 48 primary points · 235 minutes",
+    h1: 'Help you pass <span class="accent">Literature EGE</span> correctly',
+    lead: "The trainer is built on the FIPI demo, specification and codifier of EGE-2027 in Literature. The paper contains 11 tasks: 6 short-answer, 4 extended-answer (limited volume) and 1 essay. Maximum — 48 primary points, time — 235 minutes.",
+    actionTrainer: "Take the trainer",
+    actionStructure: "Exam structure",
+    actionCriteria: "Essay criteria",
+    quickStats: "Quick stats",
+    metricBlocks: "blocks completed",
+    metricCorrect: "correct answers",
+    metricChecklist: "checklist",
+    noteReset: "Answers and checklist reset when the page is opened.",
+    structureTitle: "Literature EGE structure",
+    structureSub: "11 tasks: 6 short-answer, 4 extended, 1 essay. 48 primary points, 235 minutes.",
+    changesTitle: "What changed in EGE-2027",
+    changesSub: "No changes in structure and content compared to 2026.",
+    criteriaTitle: "Scoring system",
+    criteriaSub: "Tasks 1–3, 6–8 — 1 point. Tasks 4.1/4.2 and 9.1/9.2 — 4 points. Tasks 5 and 10 — 7 points. Task 11 (essay) — up to 20 points.",
+    trainerTitle: "Trainer: 11 tasks of EGE-2027",
+    trainerSub: "Part 1 — short answer and extended answer. Part 2 — essay (approximate auto-check: compare with FIPI criteria).",
+    trainerNote: "Based on the FIPI demo 2027. For tasks 1–3 and 6–8 the answer is a word or sequence of digits. For tasks 4, 5, 9, 10, 11 auto-check is a study hint.",
+    resetAll: "Reset all answers",
+    checklistTitle: "Preparation checklist for EGE-2027",
+    checklistSub: "Tick completed items — the checklist resets when the page is opened again.",
+    planTitle: "Full 25-day course",
+    planSub: "Preparation route according to the EGE-2027 structure.",
+    supportTitle: "🤝 SUPPORT THE PROJECT 💙",
+    supportP1: "<strong>The app is free. It was and will remain free.</strong>",
+    supportP2: "All apps are free and ad-free. Your help supports offline security and education.",
+    supportPhoneLabel: "📱 TRANSFER BY PHONE NUMBER:",
+    copyPhone: "📋 Copy number",
+    copied: "✓ Copied",
+    supportP3: "✅ Money arrives instantly. No commission. Safe.",
+    supportP4: "❤️ Thanks for your support!",
+    supportCatalog: "Catalog of free offline ANTI-AI SHIELD apps",
+    footer: "Anti-AI Qwen Academy • Free HTML Project • Literature EGE-2027 • FIPI Demo",
+    qLabel1: "1. Question",
+    qLabel2: "2. What the task checks and how to think",
+    qLabel3: "Trainer — enter your answer",
+    checkBtn: "Check",
+    enterAnswer: "Enter the answer.",
+    correct: "✅ Correct!",
+    partial: "⚠️ Partially correct",
+    wrong: "❌ Incorrect.",
+    yourAnswer: "Your answer:",
+    correctAnswer: "Reference:",
+    pointsLabel: "Points:",
+    explanationLabel: "Explanation:",
+    sourceLabel: "Source:",
+    part2Approx: "Auto-check of extended tasks is approximate. Compare the final score with FIPI criteria.",
+    passedBlocks: "Blocks completed:",
+    of: "of",
+    correctInPart1: "Correct answers:",
+    primaryPart1: "Primary points:",
+    totalPrimary: "Total primary points:",
+    answerAllBlocks: "Answer all blocks to see the result.",
+    noteSelfCheck: "For tasks 4, 5, 9, 10, 11 check your answer against FIPI criteria.",
+    verdictExcellent: "Excellent result! You can aim for a high score.",
+    verdictGood: "Good, but review mistakes and repeat topics.",
+    verdictNeed: "You need to work through the basics: texts, terminology, analysis, essay.",
+    confirmReset: "Reset all answers and checklist?",
+    copyError: "Could not copy automatically. Number: ",
+    timerExam: "Literature EGE — 235 min",
+    timerPractice: "Practice — 60 min",
+    timerSprint: "Sprint — 30 min",
+    timeUp: "Time is up!",
+    passageLabel: "Read the text",
+    taskShort: "Part 1 · short answer",
+    taskExtended: "Part 1 · extended answer",
+    taskEssay: "Part 2 · essay",
+    deviceListTitle: "Device list",
+    matchTitleLeft: "Characters",
+    matchTitleRight: "Quotes",
+    topicsTitle: "Essay topics (choose ONE)",
+    chooseOne: "Choose one of the tasks",
+    wordsCounter: "Words:"
+  }
+};
+
+let currentLang = "ru";
+function loc(key) { return (I18N[currentLang] && I18N[currentLang][key]) || ""; }
+
+/* ============ Карточки структуры ============ */
+const STRUCTURE_CARDS = {
+  ru: [
+    { tag: "Всего", cls: "success-card", tagCls: "green", title: "11 заданий = 48 баллов", list: [
+      "Часть 1, блок 1 (1–5): эпическое / лироэпическое / драматическое произведение.",
+      "Часть 1, блок 2 (6–10): анализ стихотворения.",
+      "Часть 2 (11.1–11.5): сочинение на литературную тему (≥ 200 слов).",
+      "Базовый уровень: 6 заданий, 6 баллов.",
+      "Повышенный уровень: 4 задания, 22 балла.",
+      "Высокий уровень: 1 задание, 20 баллов.",
+      "Время: 235 минут (3 часа 55 минут)."
+    ]},
+    { tag: "Часть 1 (1–5)", cls: "warn-card", tagCls: "orange", title: "Анализ эпического / драматического текста", list: [
+      "1–3 — краткий ответ (1 балл каждое).",
+      "4.1/4.2 — развёрнутый ответ 5–10 предложений (4 балла).",
+      "5 — сопоставление с другим произведением (7 баллов).",
+      "Объём 5–10 предложений — условен, оценивается содержание.",
+      "При написании 4 и 5 не искажать авторскую позицию, приводить примеры из текста."
+    ]},
+    { tag: "Часть 1 (6–10)", cls: "warn-card", tagCls: "orange", title: "Анализ лирики", list: [
+      "6–8 — краткий ответ (1 балл каждое).",
+      "9.1/9.2 — развёрнутый ответ 5–10 предложений (4 балла).",
+      "10 — сопоставление с другим стихотворением (7 баллов).",
+      "Для 10 нужно выбрать опубликованное стихотворение, указать автора и название.",
+      "Нельзя обращаться к другому произведению того же автора, что и предложенный текст."
+    ]},
+    { tag: "Часть 2 (11)", cls: "danger-card", tagCls: "red", title: "Сочинение (≥ 200 слов)", list: [
+      "11.1–11.5 — выбирается ОДНА тема.",
+      "9 критериев: К1–К9.",
+      "Не менее 3 аргументированных утверждений, раскрывающих тему.",
+      "Примеры из текста с объяснением, как они подтверждают утверждения.",
+      "Не менее 2 теоретико-литературных понятий.",
+      "Нельзя обращаться к рэпу, поп-музыке, комиксам, манге, фанфикам."
+    ]}
+  ],
+  en: [
+    { tag: "Total", cls: "success-card", tagCls: "green", title: "11 tasks = 48 points", list: [
+      "Part 1, block 1 (1–5): epic / lyric-epic / dramatic text.",
+      "Part 1, block 2 (6–10): poem analysis.",
+      "Part 2 (11.1–11.5): essay on a literary topic (≥ 200 words).",
+      "Basic: 6 tasks, 6 points. Advanced: 4 tasks, 22 points. High: 1 task, 20 points.",
+      "Time: 235 minutes."
+    ]}
+  ]
+};
+
+/* ============ Карточки изменений ============ */
+const CHANGES_CARDS = {
+  ru: [
+    { tag: "Структура", cls: "success-card", tagCls: "green", title: "Изменений нет", text: "В 2027 году структура и содержание КИМ ЕГЭ по литературе не изменились по сравнению с 2026 годом. Действуют те же 11 заданий и та же система оценивания." },
+    { tag: "Документы", cls: "", tagCls: "", title: "Основание", text: "Кодификатор составлен на основе ФГОС СОО (приказ № 732 от 12.08.2022), ФОП СОО (приказ № 371 от 18.05.2023) и письма Минпросвещения от 13.10.2023 № ТВ-2035/03." },
+    { tag: "Оборудование", cls: "warn-card", tagCls: "orange", title: "Разрешено на экзамене", text: "Орфографический словарь. Обращение к текстам рэпа, песен поп-музыкантов и произведениям со спорной принадлежностью к художественной литературе (графический роман, комикс, манга, фанфик) НЕ допускается." },
+    { tag: "Анти-ИИ", cls: "danger-card", tagCls: "red", title: "Ловушки 2027", text: "В задании 8 порядок символов не важен. В задании 3 нужно ДВА слова в правильном порядке. В сочинении при объёме менее 200 слов выставляется 0 баллов. Искажение авторской позиции снижает балл." }
+  ],
+  en: [
+    { tag: "Structure", cls: "success-card", tagCls: "green", title: "No changes", text: "Structure and content of EGE-2027 in Literature are unchanged from 2026." }
+  ]
+};
+
+/* ============ Карточки критериев ============ */
+const CRITERIA_CARDS = {
+  ru: [
+    { tag: "1 балл", cls: "", tagCls: "", title: "Задания 1–3, 6–8", list: [
+      "Краткий ответ: слово, словосочетание или последовательность цифр.",
+      "В задании 3 нужно ДВА слова в правильном порядке без пробелов.",
+      "В задании 8 порядок символов значения не имеет.",
+      "Один неверный символ — 0 баллов."
+    ]},
+    { tag: "4 балла", cls: "warn-card", tagCls: "orange", title: "Задания 4.1/4.2 и 9.1/9.2", list: [
+      "К1 «Соответствие ответа заданию» — 3 балла.",
+      "К2 «Логичность, соблюдение речевых и грамматических норм» — 1 балл.",
+      "Если К1 = 0 или 1, то К2 = 0.",
+      "Нужно сформулировать утверждение, аргументировать, привести ≥ 2 примеров из текста."
+    ]},
+    { tag: "7 баллов", cls: "warn-card", tagCls: "orange", title: "Задания 5 и 10", list: [
+      "К1 «Указание сходства/различия» — 2 балла.",
+      "К2 «Привлечение текстов произведений» — 4 балла.",
+      "К3 «Логичность, соблюдение норм» — 1 балл.",
+      "Если К1 = 0, то ответ оценивается 0 баллов.",
+      "Если К2 = 0 или 1, то К3 = 0."
+    ]},
+    { tag: "20 баллов", cls: "success-card", tagCls: "green", title: "Задание 11 (сочинение)", list: [
+      "К1 «Раскрытие темы» — 3 балла.",
+      "К2 «Привлечение текста» — 3 балла.",
+      "К3 «Фактологическая точность» — 2 балла.",
+      "К4 «Опора на теоретико-литературные понятия» — 3 балла.",
+      "К5 «Композиционная цельность и логичность» — 3 балла.",
+      "К6 «Соблюдение речевых норм» — 3 балла.",
+      "К7–К9 «Орфография, пунктуация, грамматика» — по 1 баллу."
+    ]},
+    { tag: "Третий эксперт", cls: "danger-card", tagCls: "red", title: "Существенные расхождения", text: "Расхождение 3+ балла за задание 4.1/4.2 или 9.1/9.2, 4+ за задание 5 или 10, 11+ за задание 11 — назначается третья проверка." }
+  ],
+  en: [
+    { tag: "1 point", cls: "", tagCls: "", title: "Tasks 1–3, 6–8", list: ["Short answer."] },
+    { tag: "4 points", cls: "warn-card", tagCls: "orange", title: "Tasks 4.1/4.2 and 9.1/9.2", list: ["K1 — 3 pts, K2 — 1 pt."] },
+    { tag: "7 points", cls: "warn-card", tagCls: "orange", title: "Tasks 5 and 10", list: ["K1 — 2, K2 — 4, K3 — 1."] },
+    { tag: "20 points", cls: "success-card", tagCls: "green", title: "Task 11 (essay)", list: ["K1–K9."] }
+  ]
+};
+
+/* ============ ТРЕНАЖЁР — 11 ЗАДАНИЙ ДЕМО ФИПИ 2027 ============ */
+const QUIZ = [
+  // БЛОК 1. «Отцы и дети» И.С. Тургенева
+  { n: 1, scoringType: "word", accepted: ["антитеза", "контраст"], answer: "антитеза; контраст",
+    passage: TURGENEV_PASSAGE,
+    ru: { text: "«Аркадий сибаритствовал, Базаров работал». Каким термином обозначается приём резкого противопоставления в художественном произведении?", info: "Приём резкого противопоставления образов, понятий или явлений — антитеза (или контраст). В романе антитеза лежит в основе композиции: противопоставлены «отцы» и «дети», Базаров и Павел Петрович.", explanation: "Правильный ответ: антитеза (принимается контраст).", source: "ФИПИ ЕГЭ-2027, демо, задание 1." },
+    en: { text: "Term for the technique of sharp opposition in a literary work.", info: "Antithesis or contrast.", explanation: "Correct answer: антитеза; контраст.", source: "FIPI EGE-2027, demo, task 1." } },
+
+  { n: 2, scoringType: "strict", accepted: ["231"], answer: "231",
+    passage: TURGENEV_PASSAGE,
+    matchOptions: [
+      { char: "А", name: "Евгений Базаров" },
+      { char: "Б", name: "Павел Кирсанов" },
+      { char: "В", name: "Аркадий Кирсанов" }
+    ],
+    matchQuotes: [
+      { num: 1, text: "«Я теперь уже не тот заносчивый мальчик, каким я сюда приехал…»" },
+      { num: 2, text: "«Мой дед землю пахал…»" },
+      { num: 3, text: "«Личность, милостивый государь, — вот главное; человеческая личность должна быть крепка, как скала, ибо на ней всё строится»." },
+      { num: 4, text: "«Я человек мягкий, слабый, век свой провёл в глуши…»" }
+    ],
+    ru: { text: "Установите соответствие между персонажами «Отцов и детей» и их высказываниями: к каждой позиции первого столбца подберите соответствующую позицию из второго столбца. Запишите цифры под буквами А Б В.", info: "А) Евгений Базаров — «Мой дед землю пахал…» (2). Б) Павел Кирсанов — «Личность… должна быть крепка, как скала…» (3). В) Аркадий Кирсанов — «Я теперь уже не тот заносчивый мальчик…» (1).", explanation: "Правильный ответ: 231.", source: "ФИПИ ЕГЭ-2027, демо, задание 2." },
+    en: { text: "Match characters and their quotes. Write digits under letters A B V.", info: "Bazarov — 2, Pavel Kirsanov — 3, Arkady Kirsanov — 1.", explanation: "Correct answer: 231.", source: "FIPI EGE-2027, demo, task 2." } },
+
+  { n: 3, scoringType: "word", accepted: ["реализмроман"], answer: "реализмроман",
+    passage: TURGENEV_PASSAGE,
+    ru: { text: "Заполните пропуски в следующем предложении. В ответе запишите два литературных термина в порядке их следования в предложении без пробелов, запятых и других дополнительных символов.\n\n«Произведение «Отцы и дети» относится к такому литературному направлению, как ______, и написано в жанре социально-психологического ______».", info: "«Отцы и дети» — роман реализма. Жанр — социально-психологический роман. Ответ: реализмроман (слитно).", explanation: "Правильный ответ: реализмроман.", source: "ФИПИ ЕГЭ-2027, демо, задание 3." },
+    en: { text: "Fill in the blanks with two literary terms (write together without spaces).", info: "Realism + novel.", explanation: "Correct answer: реализмроман.", source: "FIPI EGE-2027, demo, task 3." } },
+
+  { n: 4, scoringType: "part2", accepted: [], answer: "",
+    passage: TURGENEV_PASSAGE,
+    ru: { text: "Выберите ОДНО из заданий: 4.1 или 4.2. Дайте аргументированный связный ответ на вопрос (5–10 предложений):\n— сформулируйте утверждение;\n— аргументируйте его;\n— приведите из предложенного фрагмента текста не менее двух примеров, подтверждающих сформулированное утверждение.\n\n4.1. Как в приведённом фрагменте проявляется авторская ирония?\n\n4.2. Какие главные черты личности Базарова можно выделить, судя по отношению к нему обитателей Марьина?", info: "К1 — 3 балла, К2 — 1 балл. Оценивается: утверждение, аргументация, ≥ 2 примера из текста. Не искажать авторскую позицию. Если К1 ≤ 1 балл, К2 = 0.", explanation: "Ориентир 4.1: ирония через гротескные характеристики Петра, оксюморон «полушутя, полузевая», сниженную лексику («дохтур», «свинья в кусте»).\nОриентир 4.2: практичность (работает, собирает травы), небрежность к этикету, медицинская компетентность (помог ребёнку Фенечки), конфликтность (ненависть Павла Петровича), популярность у простых людей.", source: "ФИПИ ЕГЭ-2027, демо, задание 4." },
+    en: { text: "Extended answer 5–10 sentences (choose 4.1 or 4.2).", info: "K1 — 3 pts, K2 — 1 pt.", explanation: "Reference: authorial irony OR Bazarov's traits.", source: "FIPI EGE-2027, demo, task 4." } },
+
+  { n: 5, scoringType: "part2", accepted: [], answer: "",
+    passage: TURGENEV_PASSAGE,
+    ru: { text: "Опираясь на приведённый фрагмент произведения (и/или другие эпизоды), сопоставьте образ Базарова с образом Штольца из романа И.А. Гончарова «Обломов». Чем внутренне различны эти герои?\n\nОтвет (5–10 предложений) должен содержать:\n— указание сходства ИЛИ различия;\n— аргументы;\n— примеры из каждого произведения;\n— объяснение, как каждый пример подтверждает сходство/различие.", info: "К1 — 2 балла (указание сходства/различия), К2 — 4 балла (привлечение текстов произведений), К3 — 1 балл (логичность и нормы). Если К1 = 0, ответ оценивается 0 баллов.", explanation: "Ориентир: сходство — оба деятельные натуры, чуждые праздности; различие — Базаров-нигилист, отрицающий искусство и авторитеты, тогда как Штольц — гармоничная личность, соединяющая практичность с уважением к культуре.", source: "ФИПИ ЕГЭ-2027, демо, задание 5." },
+    en: { text: "Compare Bazarov with Stolz from Goncharov's 'Oblomov'.", info: "K1 — 2, K2 — 4, K3 — 1.", explanation: "Reference: similarities and differences.", source: "FIPI EGE-2027, demo, task 5." } },
+
+  // БЛОК 2. Игорь Северянин «Не устыдись...»
+  { n: 6, scoringType: "word", accepted: ["ямбархаизм"], answer: "ямбархаизм",
+    passage: SEVERYANIN_POEM,
+    ru: { text: "Заполните пропуски в следующем предложении. В ответе запишите два литературных термина в порядке их следования в предложении без пробелов, запятых и других дополнительных символов.\n\n«Стихотворение Игоря Северянина написано таким стихотворным размером, как ______, и содержит ______ — устаревшее слово «зришь»».", info: "Размер — ямб (четырёхстопный). Устаревшее слово — архаизм. Ответ: ямбархаизм (слитно).", explanation: "Правильный ответ: ямбархаизм.", source: "ФИПИ ЕГЭ-2027, демо, задание 6." },
+    en: { text: "Fill in with two terms (write together).", info: "Iambic + archaism.", explanation: "Correct answer: ямбархаизм.", source: "FIPI EGE-2027, demo, task 6." } },
+
+  { n: 7, scoringType: "word", accepted: ["перекрёстный", "перекрестный", "перекрёстная", "перекрестная"], answer: "перекрёстный",
+    passage: SEVERYANIN_POEM,
+    ru: { text: "Определите тип рифмовки в приведённом стихотворении (АБАБ).", info: "Первая строфа: колени (А) — небеса (Б) — сирени (А) — голоса (Б). Схема АБАБ — перекрёстная рифмовка. Ответ: перекрёстный (или перекрёстная).", explanation: "Правильный ответ: перекрёстный.", source: "ФИПИ ЕГЭ-2027, демо, задание 7." },
+    en: { text: "Determine the rhyme type (ABAB).", info: "Cross rhyme.", explanation: "Correct answer: перекрёстный.", source: "FIPI EGE-2027, demo, task 7." } },
+
+  { n: 8, scoringType: "set", accepted: ["1256"], answer: "1256",
+    passage: SEVERYANIN_POEM,
+    devices: [
+      { num: 1, name: "лексический повтор" },
+      { num: 2, name: "эпитет" },
+      { num: 3, name: "сарказм" },
+      { num: 4, name: "литота" },
+      { num: 5, name: "метафора" },
+      { num: 6, name: "звукопись" },
+      { num: 7, name: "парцелляция" }
+    ],
+    ru: { text: "Из перечня выберите ВСЕ названия художественных средств и приёмов, использованных в тексте стихотворения. Запишите цифры в ЛЮБОМ порядке (без пробелов).", info: "В тексте есть: повтор («Цветёт... Цветёт», «земля... земля»), эпитеты («всеблагая радость», «раскрытых глаз»), метафоры («земля цветёт», «душа цветёт», «ценней бессмертья – смертная земля»), звукопись (аллитерация на «с», «з»). Сарказма, литоты, парцелляции нет.", explanation: "Правильный ответ: 1256 (порядок не важен).", source: "ФИПИ ЕГЭ-2027, демо, задание 8." },
+    en: { text: "Select ALL literary devices present. Write digits in any order.", info: "1, 2, 5, 6 present. Others absent.", explanation: "Correct answer: 1256 (any order).", source: "FIPI EGE-2027, demo, task 8." } },
+
+  { n: 9, scoringType: "part2", accepted: [], answer: "",
+    passage: SEVERYANIN_POEM,
+    ru: { text: "Выберите ОДНО из заданий: 9.1 или 9.2. Дайте аргументированный связный ответ на вопрос (5–10 предложений):\n— сформулируйте утверждение;\n— аргументируйте его;\n— приведите из текста не менее двух примеров.\n\n9.1. В чём заключается смысл призыва, звучащего в финале стихотворения?\n\n9.2. Что даёт основание отнести стихотворение Игоря Северянина «Не устыдись...» к философской лирике?", info: "К1 — 3 балла, К2 — 1 балл.", explanation: "Ориентир 9.1: Призыв «Вся жизнь твоя – в лучах раскрытых глаз!» утверждает ценность земного бытия, любви и живого восприятия мира выше абстрактного бессмертия.\nОриентир 9.2: Признаки философской лирики — размышление о смысле жизни, антитеза «бессмертье / смертная земля», генерализация через императив «Не устыдись... Благодарить».", source: "ФИПИ ЕГЭ-2027, демо, задание 9." },
+    en: { text: "Extended answer 5–10 sentences (choose 9.1 or 9.2).", info: "K1 — 3 pts, K2 — 1 pt.", explanation: "Reference: meaning of the call OR philosophical lyric.", source: "FIPI EGE-2027, demo, task 9." } },
+
+  { n: 10, scoringType: "part2", accepted: [], answer: "",
+    passage: SEVERYANIN_POEM,
+    ru: { text: "Назовите стихотворение отечественного или зарубежного поэта (с указанием автора), в котором раскрывается образ весны. В чём сходство или различие выбранного Вами произведения со стихотворением Игоря Северянина?\n\n⚠️ Не допускается обращение к другому произведению того же автора, что и предложенный текст.\n\nОтвет (5–10 предложений): автор и название + сходство/различие + аргументы + ≥ 1 пример из каждого + объяснение.", info: "7 баллов: К1 — 2, К2 — 4, К3 — 1. Если не названо выбранное стихотворение или не указан его автор, по К2 выставляется не более 1 балла. Если К1 = 0, ответ оценивается 0 баллов.", explanation: "Ориентир: например, Ф.И. Тютчев «Весенняя гроза». Сходство — воспевание весны как обновления жизни. Различие — у Северянина акцент на благодарности за дар жизни, весна как повод для экзистенциального осмысления; у Тютчева — стихийная сила природы.", source: "ФИПИ ЕГЭ-2027, демо, задание 10." },
+    en: { text: "Name a poem about spring (author + title) and compare it with Severyanin's poem.", info: "K1 — 2, K2 — 4, K3 — 1.", explanation: "Reference: author, title, similarities/differences, examples.", source: "FIPI EGE-2027, demo, task 10." } },
+
+  // ЧАСТЬ 2 — Сочинение
+  { n: 11, scoringType: "essay", accepted: [], answer: "",
+    passage: null,
+    topics: [
+      { num: "11.1", text: "Кто и что является объектом авторского смеха в поэме Н.В. Гоголя «Мёртвые души»?" },
+      { num: "11.2", text: "Кулигин и Дикой как отражение противоположных сторон русской жизни. (По пьесе А.Н. Островского «Гроза»)" },
+      { num: "11.3", text: "Тема Родины в лирике Н.М. Рубцова. (На примере не менее трёх стихотворений)" },
+      { num: "11.4", text: "История любви, перевернувшей жизнь героя, в отечественной прозе. (На примере произведения одного из писателей: А.С. Пушкина, Л.Н. Толстого, М.А. Шолохова)" },
+      { num: "11.5", text: "На какие детали следует обратить внимание художнику, работающему над портретами героев одного из произведений М.А. Булгакова? (Свою позицию обоснуйте, опираясь на текст произведения.)" }
+    ],
+    ru: { text: "Выберите ОДНУ из пяти предложенных тем сочинений (11.1–11.5) и укажите её номер.\n\nНапишите сочинение, соблюдая требования:\n1. Не менее трёх аргументированных утверждений.\n2. Примеры из текста произведения(-ий) с объяснением.\n3. Не менее двух теоретико-литературных понятий (или искусствоведческих для 11.5).\n4. Логика рассуждения.\n5. Не менее 200 слов.\n6. Грамотность (речевые, орфографические, пунктуационные, грамматические нормы).", info: "20 баллов по 9 критериям (К1–К9). Менее 200 слов → 0 баллов. Искажение авторской позиции → снижение балла по К1. Нельзя обращаться к рэпу, поп-музыке, комиксам, манге, фанфикам. Если сумма К1–К6 ≤ 6 баллов, то по К7–К9 выставляется 0.", explanation: "Для самопроверки используйте критерии из демоверсии ФИПИ (Таблица 3). Ориентир: тема раскрыта через 3+ утверждений с примерами, 2+ теоретико-литературных понятий, объём ≥ 200 слов.", source: "ФИПИ ЕГЭ-2027, демо, задание 11." },
+    en: { text: "Essay (≥ 200 words) on ONE of five topics.", info: "20 points by 9 criteria. < 200 words = 0 points.", explanation: "Reference: 3+ arguments, examples, 2+ literary concepts.", source: "FIPI EGE-2027, demo, task 11." } }
+];
+
+const CHECKLIST_ITEMS = {
+  ru: [
+    "Прочитал «Слово о полку Игореве» и комедию Д.И. Фонвизина «Недоросль».",
+    "Повторил лирику XVIII в.: М.В. Ломоносов, Г.Р. Державин.",
+    "Прочитал комедию А.С. Грибоедова «Горе от ума» и роман в стихах «Евгений Онегин».",
+    "Отработал роман А.С. Пушкина «Капитанская дочка» и роман М.Ю. Лермонтова «Герой нашего времени».",
+    "Прочитал комедию «Ревизор» и поэму «Мёртвые души» Н.В. Гоголя.",
+    "Повторил драму А.Н. Островского «Гроза» и роман И.А. Гончарова «Обломов».",
+    "Отработал роман И.С. Тургенева «Отцы и дети».",
+    "Повторил лирику Ф.И. Тютчева, А.А. Фета, Н.А. Некрасова.",
+    "Отработал поэму Н.А. Некрасова «Кому на Руси жить хорошо» и роман Ф.М. Достоевского «Преступление и наказание».",
+    "Повторил роман-эпопею Л.Н. Толстого «Война и мир».",
+    "Отработал рассказы и пьесу А.П. Чехова («Вишнёвый сад»).",
+    "Повторил произведения М. Горького и поэзию Серебряного века.",
+    "Отработал лирику А.А. Блока, В.В. Маяковского, С.А. Есенина, М.И. Цветаевой, А.А. Ахматовой.",
+    "Прочитал роман-эпопею М.А. Шолохова «Тихий Дон» и роман М.А. Булгакова «Мастер и Маргарита».",
+    "Отработал произведения о Великой Отечественной войне.",
+    "Повторил рассказы В.М. Шукшина и повести В.Г. Распутина.",
+    "Прорешал минимум 10 заданий на терминологию и литературные направления.",
+    "Прорешал минимум 5 заданий на сопоставление произведений.",
+    "Написал минимум 3 сочинения (≥ 200 слов) по критериям ФИПИ.",
+    "Прошёл полный пробник на 235 минут и разобрал ошибки."
+  ],
+  en: [
+    "Read 'The Tale of Igor's Campaign' and Fonvizin's 'The Minor'.",
+    "Reviewed 18th-century poetry: Lomonosov, Derzhavin.",
+    "Read Griboyedov's 'Woe from Wit' and Pushkin's 'Eugene Onegin'.",
+    "Practiced Pushkin's 'The Captain's Daughter' and Lermontov's 'A Hero of Our Time'.",
+    "Read Gogol's 'The Government Inspector' and 'Dead Souls'.",
+    "Reviewed Ostrovsky's 'The Storm' and Goncharov's 'Oblomov'.",
+    "Practiced Turgenev's 'Fathers and Sons'.",
+    "Reviewed lyrics by Tyutchev, Fet, Nekrasov.",
+    "Practiced Nekrasov's poem and Dostoevsky's 'Crime and Punishment'.",
+    "Reviewed Tolstoy's 'War and Peace'.",
+    "Practiced Chekhov's stories and 'The Cherry Orchard'.",
+    "Reviewed Gorky and Silver Age poetry.",
+    "Practiced Blok, Mayakovsky, Yesenin, Tsvetaeva, Akhmatova.",
+    "Read Sholokhov's 'And Quiet Flows the Don' and Bulgakov's 'The Master and Margarita'.",
+    "Reviewed literature about the Great Patriotic War.",
+    "Reviewed Shukshin's stories and Rasputin's novellas.",
+    "Solved at least 10 terminology tasks.",
+    "Solved at least 5 comparison tasks.",
+    "Wrote at least 3 essays (≥ 200 words) by FIPI criteria.",
+    "Completed a full 235-minute mock exam and reviewed mistakes."
+  ]
+};
+
+const PLAN_DAYS = {
+  ru: [
+    "Диагностика: пробник на 235 минут.",
+    "«Слово о полку Игореве». Древнерусская литература.",
+    "Литература XVIII в.: Ломоносов, Державин, Фонвизин.",
+    "Первая половина XIX в.: Жуковский, Грибоедов.",
+    "А.С. Пушкин: лирика, «Евгений Онегин», «Капитанская дочка».",
+    "М.Ю. Лермонтов: лирика, «Герой нашего времени».",
+    "Н.В. Гоголь: «Ревизор», «Мёртвые души».",
+    "Вторая половина XIX в.: Островский, Гончаров.",
+    "И.С. Тургенев. «Отцы и дети».",
+    "Лирика Тютчева, Фета, А.К. Толстого, Некрасова.",
+    "Некрасов. «Кому на Руси жить хорошо». Салтыков-Щедрин.",
+    "Ф.М. Достоевский. «Преступление и наказание».",
+    "Л.Н. Толстой. «Война и мир».",
+    "А.П. Чехов: рассказы и «Вишнёвый сад».",
+    "Рубеж XIX–XX вв.: Куприн, Андреев, Горький.",
+    "Поэзия Серебряного века: Блок, Маяковский, Есенин, Цветаева, Ахматова.",
+    "М.А. Шолохов. «Тихий Дон».",
+    "М.А. Булгаков. «Мастер и Маргарита» / «Белая гвардия».",
+    "Проза и поэзия о Великой Отечественной войне.",
+    "Пастернак, Солженицын, Шукшин, Распутин, Рубцов.",
+    "Отработка заданий 1–8 (краткий ответ и терминология).",
+    "Отработка заданий 4, 9 (развёрнутый ответ 5–10 предложений).",
+    "Отработка заданий 5, 10 (сопоставление).",
+    "Написание сочинения 11 по критериям ФИПИ.",
+    "Пробник № 2 на 235 минут. Разбор ошибок. Повторение критериев."
+  ],
+  en: [
+    "Diagnostics: full 235-min mock exam.",
+    "The Tale of Igor's Campaign.",
+    "18th-century literature.",
+    "First half of the 19th century.",
+    "Pushkin.",
+    "Lermontov.",
+    "Gogol.",
+    "Second half of the 19th century: Ostrovsky, Goncharov.",
+    "Turgenev. Fathers and Sons.",
+    "Tyutchev, Fet, A.K. Tolstoy, Nekrasov.",
+    "Nekrasov, Saltykov-Shchedrin.",
+    "Dostoevsky.",
+    "Tolstoy.",
+    "Chekhov.",
+    "Turn of the century: Kuprin, Andreev, Gorky.",
+    "Silver Age poetry.",
+    "Sholokhov.",
+    "Bulgakov.",
+    "Great Patriotic War literature.",
+    "Pasternak, Solzhenitsyn, Shukshin, Rasputin, Rubtsov.",
+    "Tasks 1–8 practice.",
+    "Tasks 4, 9 practice.",
+    "Tasks 5, 10 practice.",
+    "Essay 11 practice.",
+    "Mock exam #2. Review."
+  ]
+};
+
+/* ============ Scoring utilities ============ */
+function normalizeText(value) {
+  return String(value)
+    .trim()
+    .toLowerCase()
+    .replace(/ё/g, "е")
+    .replace(/\s+/g, " ")
+    .replace(/[.,;:!?«»"'\-–—()]+/g, "");
+}
+
+function normalizeDigits(value) {
+  return String(value).replace(/[^0-9]/g, "");
+}
+
+function isWordAccepted(accepted, raw) {
+  const norm = normalizeText(raw).replace(/\s+/g, "");
+  for (const acc of accepted) {
+    const accNorm = normalizeText(acc).replace(/\s+/g, "");
+    if (accNorm === norm) return true;
+  }
+  return false;
+}
+
+// Строгое совпадение цифр по позициям
+function scoreStrict(expectedDigits, inputDigits) {
+  if (!inputDigits || inputDigits.length !== expectedDigits.length) return 0;
+  for (let i = 0; i < expectedDigits.length; i++) {
+    if (inputDigits[i] !== expectedDigits[i]) return 0;
+  }
+  return 1;
+}
+
+// Совпадение по составу (порядок не важен)
+function multisetDiff(expected, input) {
+  const expCount = {}, inpCount = {};
+  for (const ch of expected) expCount[ch] = (expCount[ch] || 0) + 1;
+  for (const ch of input) inpCount[ch] = (inpCount[ch] || 0) + 1;
+  let missing = 0, extra = 0;
+  const keys = new Set([...Object.keys(expCount), ...Object.keys(inpCount)]);
+  keys.forEach(k => {
+    const e = expCount[k] || 0;
+    const i = inpCount[k] || 0;
+    if (i < e) missing += e - i;
+    if (i > e) extra += i - e;
+  });
+  return { missing, extra };
+}
+
+function scoreSet(expectedDigits, inputDigits) {
+  if (!inputDigits) return 0;
+  const expLen = expectedDigits.length;
+  const inpLen = inputDigits.length;
+  const { missing, extra } = multisetDiff(expectedDigits, inputDigits);
+  if (inpLen === expLen) {
+    if (missing === 0 && extra === 0) return 1;
+    if (missing === 1 && extra === 1) return 0.5;
+    return 0;
+  }
+  if (inpLen === expLen + 1) {
+    if (missing === 0 && extra === 1) return 0.5;
+    return 0;
+  }
+  if (inpLen === expLen - 1) {
+    if (missing === 1 && extra === 0) return 0.5;
+    return 0;
+  }
+  return 0;
+}
+
+// Автопроверка развёрнутых заданий — учебная подсказка
+const PART2_GRADERS = {
+  // Задание 4 (4.1/4.2) — 4 балла: К1 = 3, К2 = 1
+  4: function (raw, norm) {
+    let s = 0;
+    if (/утвержд|ирония|базаров|марьин/i.test(norm)) s++;
+    if (/пример|цитат|фрагмент|автор/i.test(norm)) s++;
+    if (/фенечк|аркади|кирсанов|павел|николай|дворов|мужик|прокофьич|дуняш|пётр|петр/i.test(norm)) s++;
+    const sentences = raw.split(/[.!?]+/).filter(x => x.trim().length > 5).length;
+    let score = Math.min(s, 3);
+    if (sentences >= 4 && score >= 2) score = Math.min(score + 1, 4);
+    return score;
+  },
+  // Задание 5 — 7 баллов: К1 = 2, К2 = 4, К3 = 1
+  5: function (raw, norm) {
+    let s = 0;
+    if (/сходств|различи/i.test(norm)) s++;
+    if (/базаров/i.test(norm) && /штольц|обломов|гончаров/i.test(norm)) s++;
+    if (/пример|цитат|эпизод/i.test(norm)) s++;
+    if (/дело|деятельн|нигилист|созидател|разрушител|труд/i.test(norm)) s++;
+    const sentences = raw.split(/[.!?]+/).filter(x => x.trim().length > 5).length;
+    let score = Math.min(s, 5);
+    if (sentences >= 5 && score >= 4) score = Math.min(score + 2, 7);
+    return score;
+  },
+  // Задание 9 (9.1/9.2) — 4 балла
+  9: function (raw, norm) {
+    let s = 0;
+    if (/утвержд|образ|весн|любов|цвет|звук|смысл|философ/i.test(norm)) s++;
+    if (/пример|цитат|строк|автор|северянин/i.test(norm)) s++;
+    if (/мотив|символ|эпитет|метафор|анафор|рифм|антитез/i.test(norm)) s++;
+    const sentences = raw.split(/[.!?]+/).filter(x => x.trim().length > 5).length;
+    let score = Math.min(s, 3);
+    if (sentences >= 4 && score >= 2) score = Math.min(score + 1, 4);
+    return score;
+  },
+  // Задание 10 — 7 баллов
+  10: function (raw, norm) {
+    let s = 0;
+    if (/сходств|различи/i.test(norm)) s++;
+    if ((/назван|стихотворени|автор|поэт/i.test(norm)) && !/северянин/i.test(norm)) s++;
+    if (/пример|цитат|строк/i.test(norm)) s++;
+    if (/весн|образ|мотив|тема|символ/i.test(norm)) s++;
+    const sentences = raw.split(/[.!?]+/).filter(x => x.trim().length > 5).length;
+    let score = Math.min(s, 5);
+    if (sentences >= 5 && score >= 4) score = Math.min(score + 2, 7);
+    return score;
+  },
+  // Сочинение (11) — 20 баллов
+  11: function (raw, norm) {
+    const words = raw.trim().split(/\s+/).filter(w => w.length > 0).length;
+    if (words < 200) return 0;
+    let s = 0;
+    if (/тема|раскры|утвержд/i.test(norm)) s++;
+    if (/пример|цитат|эпизод|герой/i.test(norm)) s++;
+    if (/метафор|эпитет|композиц|сюжет|образ|символ|портрет/i.test(norm)) s++;
+    if (/автор|гогол|островск|рубцов|пушкин|толстой|шолохов|булгаков/i.test(norm)) s++;
+    if (/вывод|итог|таким образом/i.test(norm)) s++;
+    let score = 0;
+    score += Math.min(s, 3);          // К1 Раскрытие темы
+    score += Math.min(s, 3);          // К2 Привлечение текста
+    score += Math.min(s, 2);          // К3 Фактологическая точность
+    score += Math.min(s, 3);          // К4 Теоретико-литературные понятия
+    score += Math.min(s, 3);          // К5 Композиция
+    score += Math.min(s, 3);          // К6 Речевые нормы
+    score += Math.min(words >= 250 ? 1 : 0, 1);  // К7 Орфография
+    score += Math.min(words >= 250 ? 1 : 0, 1);  // К8 Пунктуация
+    score += Math.min(words >= 250 ? 1 : 0, 1);  // К9 Грамматика
+    return Math.min(score, 20);
+  }
+};
+
+function scoreTask(task, raw) {
+  const max = WEIGHTS[task.n] || 1;
+  const text = String(raw || "").trim();
+  if (!text) return 0;
+  const norm = normalizeText(raw);
+  const inputDigits = normalizeDigits(raw);
+  const type = SCORING_TYPES[task.n] || task.scoringType;
+
+  switch (type) {
+    case "word":   return isWordAccepted(task.accepted, raw) ? max : 0;
+    case "strict": return scoreStrict(task.accepted[0], inputDigits) ? max : 0;
+    case "set":    return Math.min(Math.round(scoreSet(task.accepted[0], inputDigits) * max), max);
+    case "part2":
+    case "essay": {
+      const g = PART2_GRADERS[task.n];
+      return g ? Math.min(g(raw, norm), max) : 0;
+    }
+    default: return 0;
+  }
+}
+
+let savedAnswers = {};
+let checklistState = {};
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, function (m) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m];
+  });
+}
+
+function scrollToId(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function applyUIText() {
+  const L = I18N[currentLang];
+  document.title = L.docTitle;
+  document.documentElement.lang = currentLang;
+  const meta = document.querySelector('meta[name="description"]');
+  if (meta) meta.setAttribute("content", L.metaDesc);
+  document.querySelectorAll("[data-i18n]").forEach(function (el) {
+    const key = el.dataset.i18n;
+    if (L[key] != null) el.innerHTML = L[key];
+  });
+}
+
+function renderCards(containerId, cards) {
+  const grid = document.getElementById(containerId);
+  grid.innerHTML = "";
+  cards.forEach(function (c) {
+    const div = document.createElement("div");
+    div.className = "card " + (c.cls || "");
+    let inner = '<span class="tag ' + (c.tagCls || "") + '">' + escapeHtml(c.tag) + "</span>";
+    inner += "<h3>" + escapeHtml(c.title) + "</h3>";
+    if (c.list) {
+      inner += '<ul class="mini-list">' + c.list.map(function (i) { return "<li>" + escapeHtml(i) + "</li>"; }).join("") + "</ul>";
+    } else if (c.text) {
+      inner += "<p>" + escapeHtml(c.text) + "</p>";
+    }
+    div.innerHTML = inner;
+    grid.appendChild(div);
+  });
+}
+
+function renderChecklist() {
+  const ul = document.getElementById("checklistUl");
+  const items = CHECKLIST_ITEMS[currentLang];
+  ul.innerHTML = items.map(function (text, index) {
+    const key = "ch" + (index + 1);
+    const checked = checklistState[key] ? "checked" : "";
+    const doneClass = checklistState[key] ? "done" : "";
+    return [
+      '<li class="check-item ' + doneClass + '">',
+        '<input type="checkbox" id="' + key + '" data-key="' + key + '" ' + checked + ' />',
+        '<label for="' + key + '">' + escapeHtml(text) + '</label>',
+      '</li>'
+    ].join("");
+  }).join("");
+}
+
+function renderPlan() {
+  const days = PLAN_DAYS[currentLang];
+  document.getElementById("planGrid").innerHTML = days.map(function (text, index) {
+    const day = index + 1;
+    const critical = day === 1 || day === 9 || day === 22 || day === 25;
+    return [
+      '<div class="day ' + (critical ? "critical" : "") + '">',
+        '<b>' + (currentLang === "ru" ? "День " : "Day ") + day + '</b>',
+        escapeHtml(text),
+      '</div>'
+    ].join("");
+  }).join("");
+}
+
+function renderQuiz() {
+  const container = document.getElementById("quizContainer");
+  container.innerHTML = "";
+  QUIZ.forEach(function (task) {
+    const block = document.createElement("div");
+    block.className = "question-block";
+    block.id = "q" + task.n;
+    const data = task[currentLang];
+
+    const isShort = task.scoringType === "word" || task.scoringType === "strict" || task.scoringType === "set";
+    const isEssay = task.scoringType === "essay";
+    const typeLabel = isShort ? loc("taskShort") : isEssay ? loc("taskEssay") : loc("taskExtended");
+    const tagCls = isShort ? "orange" : isEssay ? "red" : "green";
+
+    let html = "";
+    html += '<div class="q-number">' + (currentLang === "ru" ? "Задание " : "Task ") + task.n + " / " + TOTAL_TASKS + "</div>";
+    html += '<div style="margin:-8px 0 14px;"><span class="tag ' + tagCls + '">' + escapeHtml(typeLabel) + '</span>' +
+            '<span style="float:right;color:var(--muted);font-size:13px;">макс. ' + WEIGHTS[task.n] + ' б.</span></div>';
+
+    // Текст-фрагмент (Тургенев / Северянин)
+    if (task.passage) {
+      html += '<div class="passage"><span class="passage-label">' + escapeHtml(loc("passageLabel")) + '</span>' + escapeHtml(task.passage) + '</div>';
+    }
+
+    // Сетка соответствий (задание 2)
+    if (task.matchOptions && task.matchQuotes) {
+      html += '<div class="match-grid">';
+      html += '<div><h4>' + escapeHtml(loc("matchTitleLeft")) + '</h4><ul>';
+      task.matchOptions.forEach(o => { html += '<li><b>' + escapeHtml(o.char) + ')</b> ' + escapeHtml(o.name) + '</li>'; });
+      html += '</ul></div>';
+      html += '<div><h4>' + escapeHtml(loc("matchTitleRight")) + '</h4><ul>';
+      task.matchQuotes.forEach(q => { html += '<li><b>' + q.num + ')</b> ' + escapeHtml(q.text) + '</li>'; });
+      html += '</ul></div></div>';
+    }
+
+    // Список средств (задание 8)
+    if (task.devices) {
+      html += '<div class="q-part"><span class="q-part-label">' + escapeHtml(loc("deviceListTitle")) + '</span>';
+      html += '<div class="device-list">';
+      task.devices.forEach(d => {
+        html += '<span class="device-chip"><b>' + d.num + ')</b>' + escapeHtml(d.name) + '</span>';
+      });
+      html += '</div></div>';
+    }
+
+    // Список тем сочинения (задание 11)
+    if (task.topics) {
+      html += '<div class="q-part"><span class="q-part-label">' + escapeHtml(loc("topicsTitle")) + '</span>';
+      html += '<div class="topic-list">';
+      task.topics.forEach(t => {
+        html += '<div class="topic-item"><b>' + escapeHtml(t.num) + '</b>' + escapeHtml(t.text) + '</div>';
+      });
+      html += '</div></div>';
+    }
+
+    // Вопрос
+    html += '<div class="q-part">';
+    html += '<span class="q-part-label">' + escapeHtml(loc("qLabel1")) + '</span>';
+    html += '<div class="q-text">' + escapeHtml(data.text) + '</div>';
+    html += '</div>';
+
+    // Инфо
+    html += '<div class="q-info">';
+    html += '<span class="q-part-label" style="color:#d8ccff;">' + escapeHtml(loc("qLabel2")) + '</span>';
+    html += '<p style="margin:0;">' + escapeHtml(data.info) + '</p>';
+    html += '</div>';
+
+    // Поле ввода
+    html += '<div class="q-part">';
+    html += '<span class="q-trainer-label">' + escapeHtml(loc("qLabel3")) + '</span>';
+    const ph = isShort
+      ? (currentLang === "ru" ? "Введите слово или цифры без пробелов" : "Enter word or digits without spaces")
+      : isEssay
+        ? (currentLang === "ru" ? "Введите сочинение (≥ 200 слов)" : "Enter essay (≥ 200 words)")
+        : (currentLang === "ru" ? "Введите развёрнутый ответ (5–10 предложений)" : "Enter extended answer (5–10 sentences)");
+    if (isShort) {
+      html += '<div class="answer-row">';
+      html += '<input id="input-' + task.n + '" class="answer-input" type="text" placeholder="' + escapeHtml(ph) + '" autocomplete="off" spellcheck="false" />';
+      html += '<button class="btn small" onclick="checkTask(' + task.n + ')">' + escapeHtml(loc("checkBtn")) + '</button>';
+      html += '</div>';
+    } else {
+      html += '<textarea id="input-' + task.n + '" class="answer-input' + (isEssay ? ' essay' : '') + '" placeholder="' + escapeHtml(ph) + '"></textarea>';
+      html += '<div class="answer-row" style="margin-top:10px;">';
+      if (isEssay) html += '<span id="wc-' + task.n + '" style="color:var(--muted);font-size:13px;">' + escapeHtml(loc("wordsCounter")) + ' 0</span>';
+      html += '<button class="btn small" style="margin-left:auto;" onclick="checkTask(' + task.n + ')">' + escapeHtml(loc("checkBtn")) + '</button>';
+      html += '</div>';
+    }
+    html += '</div>';
+
+    html += '<div id="result-' + task.n + '"></div>';
+
+    block.innerHTML = html;
+    container.appendChild(block);
+  });
+  restoreAnswers();
+  updateStats();
+  updateSummary();
+}
+
+function restoreAnswers() {
+  QUIZ.forEach(function (task) {
+    const saved = savedAnswers[task.n];
+    if (!saved) return;
+    const input = document.getElementById("input-" + task.n);
+    if (!input) return;
+    input.disabled = true;
+    input.value = saved.value;
+    input.classList.remove("correct", "wrong", "partial");
+    if (saved.score === saved.max) input.classList.add("correct");
+    else if (saved.score > 0) input.classList.add("partial");
+    else input.classList.add("wrong");
+    showResult(task, saved);
+  });
+}
+
+function checkTask(n) {
+  const task = QUIZ.find(function (q) { return q.n === n; });
+  if (!task || savedAnswers[n]) return;
+  const input = document.getElementById("input-" + n);
+  const raw = input.value;
+  if (!String(raw).trim()) { alert(loc("enterAnswer")); return; }
+  const max = WEIGHTS[task.n] || 1;
+  const score = scoreTask(task, raw);
+  const saved = { value: raw, score: score, max: max, correct: score === max };
+  savedAnswers[n] = saved;
+  input.disabled = true;
+  input.value = raw;
+  input.classList.remove("correct", "wrong", "partial");
+  if (score === max) input.classList.add("correct");
+  else if (score > 0) input.classList.add("partial");
+  else input.classList.add("wrong");
+  showResult(task, saved);
+  updateStats();
+  updateSummary();
+}
+
+function showResult(task, saved) {
+  const resultBox = document.getElementById("result-" + task.n);
+  if (!resultBox) return;
+  const data = task[currentLang];
+  const isMax = saved.score === saved.max;
+  const isPartial = saved.score > 0 && !isMax;
+  const verdictClass = isMax ? "correct" : isPartial ? "partial" : "wrong";
+  const verdictText = isMax ? loc("correct") : isPartial ? loc("partial") : loc("wrong");
+
+  let extra = "";
+  if (task.n >= 4) extra = '<div class="source-row"><strong>' + escapeHtml(loc("part2Approx")) + '</strong></div>';
+
+  resultBox.innerHTML = [
+    '<div class="result-block ' + verdictClass + '">',
+      '<div class="verdict ' + verdictClass + '">' + escapeHtml(verdictText) + '</div>',
+      '<div class="result-row"><strong>' + escapeHtml(loc("correctAnswer")) + '</strong> ' + escapeHtml(task.answer) + '</div>',
+      '<div class="result-row"><strong>' + escapeHtml(loc("pointsLabel")) + '</strong> ' + saved.score + ' / ' + saved.max + '</div>',
+      '<div class="result-row"><strong>' + escapeHtml(loc("explanationLabel")) + '</strong> ' + escapeHtml(data.explanation) + '</div>',
+      '<div class="source-row"><strong>' + escapeHtml(loc("sourceLabel")) + '</strong> ' + escapeHtml(data.source) + '</div>',
+      extra,
+    '</div>'
+  ].join("");
+}
+
+function getStats() {
+  let answered = 0, correct = 0, score = 0, maxScore = 0;
+  QUIZ.forEach(function (task) {
+    const saved = savedAnswers[task.n];
+    const w = WEIGHTS[task.n] || 1;
+    maxScore += w;
+    if (saved) {
+      answered++;
+      score += saved.score || 0;
+      if (saved.correct) correct++;
+    }
+  });
+  return { total: TOTAL_TASKS, answered: answered, correct: correct, score: score, maxScore: maxScore };
+}
+
+function getChecklistProgress() {
+  const inputs = document.querySelectorAll("#checklistUl input");
+  const total = inputs.length;
+  let done = 0;
+  inputs.forEach(function (input) { if (input.checked) done++; });
+  return total ? Math.round((done / total) * 100) : 0;
+}
+
+function updateStats() {
+  const s = getStats();
+  document.getElementById("answeredCount").textContent = s.answered + "/" + s.total;
+  document.getElementById("correctCount").textContent = s.correct + "/" + s.total;
+  document.getElementById("checklistProgress").textContent = getChecklistProgress() + "%";
+  document.getElementById("overall").value = Math.round(((s.answered / s.total) * 100 + getChecklistProgress()) / 2);
+}
+
+function updateSummary() {
+  const s = getStats();
+  const box = document.getElementById("summaryBox");
+  const L = I18N[currentLang];
+  if (s.answered < s.total) {
+    box.innerHTML = [
+      '<div class="summary">',
+        '<p style="color:#9aa4c8;margin:0;">' + escapeHtml(L.passedBlocks) + ' <strong>' + s.answered + '</strong> ' + escapeHtml(L.of) + ' ' + s.total + '</p>',
+        '<p style="color:#9aa4c8;margin:8px 0 0 0;">' + escapeHtml(L.correctInPart1) + ' <strong>' + s.correct + '</strong> ' + escapeHtml(L.of) + ' ' + s.total + '</p>',
+        '<p style="color:#9aa4c8;margin:8px 0 0 0;">' + escapeHtml(L.primaryPart1) + ' <strong>' + s.score + '</strong> ' + escapeHtml(L.of) + ' ' + s.maxScore + '</p>',
+        '<p style="color:#9aa4c8;margin:8px 0 0 0;font-size:14px;">' + escapeHtml(L.answerAllBlocks) + '</p>',
+      '</div>'
+    ].join("");
+    return;
+  }
+  const percent = s.maxScore ? Math.round((s.score / s.maxScore) * 100) : 0;
+  let verdict = percent >= 85 ? L.verdictExcellent : percent >= 60 ? L.verdictGood : L.verdictNeed;
+  box.innerHTML = [
+    '<div class="summary">',
+      '<div class="score">' + s.score + '/' + s.maxScore + '</div>',
+      '<p style="margin:8px 0;">' + escapeHtml(verdict) + '</p>',
+      '<p style="color:#9aa4c8;margin:0;">' + escapeHtml(L.correctInPart1) + ' ' + percent + '%</p>',
+      '<p class="note" style="margin-top:10px;">' + escapeHtml(L.noteSelfCheck) + '</p>',
+    '</div>'
+  ].join("");
+}
+
+function resetAll() {
+  if (!confirm(loc("confirmReset"))) return;
+  savedAnswers = {};
+  checklistState = {};
+  renderChecklist();
+  renderPlan();
+  renderQuiz();
+}
+
+function copyPhone() {
+  const phone = "89202275676";
+  const status = document.getElementById("copyStatus");
+  const showCopied = function () {
+    status.textContent = loc("copied");
+    setTimeout(function () { status.textContent = ""; }, 2500);
+  };
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(phone).then(showCopied).catch(function () { fallbackCopy(phone, showCopied); });
+  } else {
+    fallbackCopy(phone, showCopied);
+  }
+}
+
+function fallbackCopy(text, callback) {
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.style.position = "fixed";
+  textarea.style.opacity = "0";
+  document.body.appendChild(textarea);
+  textarea.focus();
+  textarea.select();
+  try { document.execCommand("copy"); callback(); }
+  catch (e) { alert(loc("copyError") + text); }
+  document.body.removeChild(textarea);
+}
+
+let timerTotal = 235 * 60;
+let timerRemaining = timerTotal;
+let timerInterval = null;
+let timerRunning = false;
+
+function formatTime(sec) {
+  const h = Math.floor(sec / 3600);
+  const m = Math.floor((sec % 3600) / 60);
+  const s = sec % 60;
+  return [h, m, s].map(function (v) { return String(v).padStart(2, "0"); }).join(":");
+}
+
+function updateTimerDisplay() {
+  const display = document.getElementById("timerDisplay");
+  const widget = document.getElementById("timerWidget");
+  display.textContent = formatTime(timerRemaining);
+  widget.classList.toggle("warning", timerRemaining <= 300 && timerRemaining > 60);
+  widget.classList.toggle("danger", timerRemaining <= 60);
+}
+
+function updateTimerButton() {
+  const btn = document.getElementById("timerToggle");
+  btn.textContent = timerRunning ? "⏸" : "▶";
+}
+
+function stopTimer() {
+  timerRunning = false;
+  if (timerInterval) clearInterval(timerInterval);
+  timerInterval = null;
+  updateTimerButton();
+}
+
+function startTimer() {
+  if (timerRunning || timerRemaining <= 0) return;
+  timerRunning = true;
+  timerInterval = setInterval(function () {
+    if (timerRemaining > 0) { timerRemaining--; updateTimerDisplay(); }
+    if (timerRemaining === 0) { stopTimer(); alert(loc("timeUp")); }
+  }, 1000);
+  updateTimerButton();
+}
+
+function toggleTimer() { if (timerRunning) stopTimer(); else startTimer(); }
+
+function resetTimer() {
+  stopTimer();
+  timerRemaining = timerTotal;
+  updateTimerDisplay();
+}
+
+function updateTimerLabels() {
+  const preset = document.getElementById("timerPreset");
+  const presets = [
+    { seconds: 235 * 60, label: loc("timerExam") },
+    { seconds: 60 * 60, label: loc("timerPractice") },
+    { seconds: 30 * 60, label: loc("timerSprint") }
+  ];
+  preset.innerHTML = presets.map(function (p) {
+    return '<option value="' + p.seconds + '">' + escapeHtml(p.label) + '</option>';
+  }).join("");
+  preset.value = String(235 * 60);
+  timerTotal = 235 * 60;
+  timerRemaining = timerTotal;
+  updateTimerButton();
+  updateTimerDisplay();
+}
+
+function setLang(lang) {
+  if (lang === currentLang) return;
+  currentLang = lang;
+  document.querySelectorAll(".lang-option").forEach(function (sp) {
+    sp.classList.toggle("active", sp.dataset.lang === lang);
+  });
+  savedAnswers = {};
+  checklistState = {};
+  applyUIText();
+  renderAll();
+  updateTimerLabels();
+}
+
+function renderAll() {
+  renderCards("structureGrid", STRUCTURE_CARDS[currentLang]);
+  renderCards("changesGrid", CHANGES_CARDS[currentLang]);
+  renderCards("criteriaGrid", CRITERIA_CARDS[currentLang]);
+  renderChecklist();
+  renderPlan();
+  renderQuiz();
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  applyUIText();
+  renderAll();
+  updateTimerLabels();
+  updateTimerDisplay();
+
+  document.getElementById("langToggle").addEventListener("click", function () {
+    setLang(currentLang === "ru" ? "en" : "ru");
+  });
+  document.getElementById("timerToggle").addEventListener("click", toggleTimer);
+  document.getElementById("timerReset").addEventListener("click", resetTimer);
+  document.getElementById("timerPreset").addEventListener("change", function (e) {
+    timerTotal = parseInt(e.target.value, 10);
+    resetTimer();
+  });
+  document.getElementById("checklistUl").addEventListener("change", function (e) {
+    if (e.target.matches("input[type='checkbox']")) {
+      const key = e.target.dataset.key;
+      checklistState[key] = e.target.checked;
+      const li = e.target.closest(".check-item");
+      if (li) li.classList.toggle("done", e.target.checked);
+      updateStats();
+    }
+  });
+
+  // Счётчик слов для сочинения
+  document.addEventListener("input", function (e) {
+    if (e.target.matches("textarea[id^='input-']")) {
+      const n = e.target.id.replace("input-", "");
+      const wc = document.getElementById("wc-" + n);
+      if (wc) {
+        const words = e.target.value.trim().split(/\s+/).filter(w => w.length > 0).length;
+        wc.textContent = loc("wordsCounter") + " " + words;
+      }
+    }
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Enter") return;
+    if (e.shiftKey) return;
+    const active = document.activeElement;
+    if (!active || !active.classList.contains("answer-input")) return;
+    if (active.tagName === "TEXTAREA") return;
+    const m = active.id.match(/^input-(\d+)$/);
+    if (m) checkTask(parseInt(m[1], 10));
+  });
+});
+</script>
+</body>
+</html>
